@@ -65,7 +65,7 @@ class ProductController < ApplicationController
 
 	if @product.nil?
 		flash[:error] = [ 'Product not found' ]
-		redirect_to product_path
+		redirect_to product_index_path
 	end
   end
 
