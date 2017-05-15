@@ -1,0 +1,19 @@
+!!!
+
+%html
+
+  %head
+    %title Demo App
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  %body
+    - if !flash.nil?
+      .flash-messages
+        - flash.each do |flash_type, messages|
+          - messages.each do |message|
+            .alert{ :class => "alert-#{flash_type}" }
+              %strong= message
+
+    = yield
