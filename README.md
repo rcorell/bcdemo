@@ -26,19 +26,14 @@ Products have multiple rate plans.
   * StartDate (when it's first available)
   * EndDate  (when it's no longer available)
 
-  
-
 ### Rate plan
-A rate plan belongs only to one product.
-    
+A rate plan belongs only to one product. 
   * Title 
   * Description
   * StartDate (when it's first available)
   * EndDate (when it's first available)
   * Recurrence  (One-time, Monthly, Quarterly, Annually)
-  * Price  (in USD)
-
- 
+  * Price (in USD)
  
 ## Project dependencies
 * **Ruby**: 2.4.1
