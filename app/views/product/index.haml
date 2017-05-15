@@ -1,0 +1,21 @@
+%h1 Products
+
+%table
+  %th ID
+  %th Title
+  %th Description
+  %th Start Date
+  %th End Date
+  %th Discontinued
+
+  - @products.each do |p|
+    %tr
+      %td= p.id
+      %td= p.title
+      %td= p.description
+      %td= p.start_date.strftime('%m/%d/%Y') if p.start_date
+      %td= p.end_date.strftime('%m/%d/%Y') if p.end_date
+      %td= p.discontinued ? 'X' : ''
+
+
+= link_to 'Create new product', new_product_path
