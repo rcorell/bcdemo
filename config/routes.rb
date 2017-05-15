@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   get '/', to: 'home#index'
 
   resources :product
+  resources :rate_plan
+
 end
