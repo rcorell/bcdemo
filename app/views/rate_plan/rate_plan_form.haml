@@ -1,0 +1,33 @@
+%h1= @title
+
+= form_for @rate_plan, url: { action: @action }, method: @method do |f|
+
+  .form-row
+    = f.label :product_id
+    = f.select :product_id, @products_for_select
+
+  .form-row
+    = f.label :title
+    = f.text_field :title, value: @rate_plan.title
+
+  .form-row
+    = f.label :description
+    = f.text_field :description, value: @rate_plan.description
+
+  .form-row
+    = f.label :billing_frequency
+    = f.select :billing_frequency, RatePlan.billing_frequencies.keys
+
+  .form-row
+    = f.label :price
+    = f.text_field :price
+
+  .form-row
+    = f.label :start_date
+    = f.date_select :start_date, value: @rate_plan.start_date
+
+  .form-row
+    = f.label :end_date
+    = f.date_select :end_date, value: @rate_plan.end_date
+
+  = f.submit
