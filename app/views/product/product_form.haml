@@ -4,7 +4,7 @@
 
   .form-row
     = f.label :title
-    = f.text_field :title, value: @product.title, disabled: true
+    = f.text_field :title, value: @product.title
 
   .form-row
     = f.label :description
@@ -12,7 +12,7 @@
 
   .form-row
     = f.label :start_date
-    = f.date_select :start_date, value: @product.start_date, disabled: true
+    = f.date_select :start_date, value: @product.start_date
 
   .form-row
     = f.label :end_date
