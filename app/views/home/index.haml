@@ -1,0 +1,39 @@
+%h1 BigCommerce Demo
+
+%h3 Admin GUI
+Lets admin users CRUD products and rate plans
+%ol
+  %li As an admin I need to be able to add products to the catalog.
+  %li As an admin I need to be able to edit products in the catalog.
+  %li As an admin I need to mark products as discontinued
+  %li As an admin I need to be able to see a list of all the products in the catalog.
+  %li As an admin I need to be able to see the detail of a single product
+  %li As an admin I need to be able to add rate plans to products.
+  %li As an admin I need to be able to edit rate plans for a product.
+  %li As an admin I need to be able to retire rate plans for a product
+  %li As an admin I need be able to filter out any expired or retired products or rate plans
+
+%h3 Customer API
+A JSON API that lets people pull back product lists and details
+%ol
+  %li As a customer I should be able get all the products in the catalog (except discontinued).
+  %li As a customer I should be able to hit an API end point and pull back the details of just one product (except retired)
+
+%h3 Product
+Products have multiple rate plans.
+%ol
+  %li Title
+  %li Description
+  %li StartDate (when it's first available)
+  %li EndDate  (when it's no longer available)
+
+%h3 Rate Plan
+A rate plan belongs only to one product.
+%ol
+  %li Title
+  %li Description
+  %li StartDate (when it's first available)
+  %li EndDate (when it's first available)
+  %li Recurrence  (One-time, Monthly, Quarterly, Annually)
+  %li Price  (in USD)
+
