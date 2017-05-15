@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170515123745) do
+ActiveRecord::Schema.define(version: 20170515130151) do
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title", default: ""
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20170515123745) do
   create_table "rate_plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title", default: ""
     t.string "description", default: ""
-    t.integer "type", default: 0
+    t.integer "billing_frequency", default: 0
     t.integer "price_in_cents"
     t.datetime "start_date"
     t.datetime "end_date"
