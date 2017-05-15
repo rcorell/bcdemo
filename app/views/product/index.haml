@@ -11,7 +11,7 @@
   - @products.each do |p|
     %tr
       %td= p.id
-      %td= p.title
+      %td= link_to p.title, edit_product_path( id: p.id )
       %td= p.description
       %td= p.start_date.strftime('%m/%d/%Y') if p.start_date
       %td= p.end_date.strftime('%m/%d/%Y') if p.end_date

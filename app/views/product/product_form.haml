@@ -1,0 +1,26 @@
+%h1= @title
+
+= form_for @product, url: { action: @action }, method: @method do |f|
+
+  .form-row
+    = f.label :title
+    = f.text_field :title, value: @product.title, disabled: true
+
+  .form-row
+    = f.label :description
+    = f.text_field :description, value: @product.description
+
+  .form-row
+    = f.label :start_date
+    = f.date_select :start_date, value: @product.start_date, disabled: true
+
+  .form-row
+    = f.label :end_date
+    = f.date_select :end_date, value: @product.end_date
+
+  - if @method == :put
+    .form-row
+      = f.label :discontinued
+      = f.check_box :discontinued, value: @product.discontinued
+
+  = f.submit
