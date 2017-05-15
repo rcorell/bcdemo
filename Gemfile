@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 
 # BigCommerce demo specific gems
 gem 'haml'
+gem 'money-rails'
 gem 'normalize-rails'
 
 
