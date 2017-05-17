@@ -4,6 +4,8 @@ class Product < ApplicationRecord
 
   validates :title,        length: { minimum: 1, maximum: 255 }
   validates :description,  length: { minimum: 1, maximum: 255 }
+	validates_presence_of :start_date, :end_date
+	validates :end_date, date: { after_or_equal_to: :start_date, message: 'must be after start date' }
 
 
   def retired?

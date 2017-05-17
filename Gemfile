@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 
 
 # BigCommerce demo specific gems
+gem 'date_validator'
 gem 'haml'
 gem 'money-rails'
 gem 'normalize-rails'
