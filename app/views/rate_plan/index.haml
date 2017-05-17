@@ -1,25 +1,33 @@
 %h1 Rate Plans
 
-%table
-  %th ID
-  %th Product
-  %th Title
-  %th Description
-  %th Billing Frequency
-  %th Price
-  %th Start Date
-  %th End Date
+.spacer
 
-  - @rate_plans.each do |p|
-    %tr
-      %td= p.id
-      %td= link_to p.product.title, edit_product_path( id: p.product.id )
-      %td= link_to p.title, edit_rate_plan_path( id: p.id )
-      %td= p.description
-      %td= p.billing_frequency
-      %td= p.price
-      %td= p.start_date.strftime('%m/%d/%Y') if p.start_date
-      %td= p.end_date.strftime('%m/%d/%Y') if p.end_date
+%input{type: 'checkbox', checked: @include_retired, onclick: "document.location='#{rate_plan_index_path}?include_retired=#{!@include_retired}';"}
+include retired
+
+.object-list
+  %table
+    %th ID
+    %th Title
+    %th Product
+    %th Description
+    %th Billing Frequency
+    %th Price
+    %th Start Date
+    %th End Date
+    %th Retired
+
+    - @rate_plans.each do |p|
+      %tr
+        %td= p.id
+        %td= link_to p.title, edit_rate_plan_path( id: p.id )
+        %td= link_to p.product.title, edit_product_path( id: p.product.id )
+        %td= p.description
+        %td= p.billing_frequency
+        %td.align-right= p.price.format if p.price
+        %td= p.start_date.strftime('%m/%d/%Y') if p.start_date
+        %td= p.end_date.strftime('%m/%d/%Y') if p.end_date
+        %td.centered= 'X' if p.retired?
 
 
-= link_to 'Create new rate plan', new_rate_plan_path
+= button_to 'Create new rate plan', new_rate_plan_path, method: :get

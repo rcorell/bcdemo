@@ -8,7 +8,7 @@
 
   .form-row
     = f.label :description
-    = f.text_field :description, value: @product.description
+    = f.text_area :description, value: @product.description
 
   .form-row
     = f.label :start_date
@@ -23,4 +23,17 @@
       = f.label :discontinued
       = f.check_box :discontinued, value: @product.discontinued
 
+  .form-row
+    Rate Plans
+    .rate-plans
+      - if @product.rate_plans.length == 0
+        No rate plans
+      - else
+        - @product.rate_plans.each do |rate_plan|
+          =link_to rate_plan.title, edit_rate_plan_path( id: rate_plan.id )
+          %br
+
+  .spacer
+
   = f.submit
+  = link_to 'Cancel', product_index_path

@@ -1,7 +1,15 @@
 class ProductController < ApplicationController
 
+	skip_before_action :verify_authenticity_token, :only => [:index, :show]
+
+
   def index
-    @products = Product.order('created_at').all
+		@include_discontinued = params[:include_discontinued].nil? || params[:include_discontinued] != 'false'
+
+		search = Product.order('created_at')
+		search = search.where( discontinued: false ) if !@include_discontinued
+
+    @products = search.all
   end
 
   def new
@@ -35,7 +43,7 @@ class ProductController < ApplicationController
       flash[:error] = [ 'Product not found' ]
       redirect_to product_path
     else
-      @title = "Edit #{@product.title}"
+      @title = "Edit Product #{@product.title}"
       @action = 'update'
       @method = :put
       render 'product/product_form'
@@ -58,15 +66,6 @@ class ProductController < ApplicationController
       @method = :put
       render 'product/product_form'
     end
-  end
-
-  def show
-  	@product = Product.find( params[:id] )
-
-	if @product.nil?
-		flash[:error] = [ 'Product not found' ]
-		redirect_to product_index_path
-	end
   end
 
 

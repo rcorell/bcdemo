@@ -1,7 +1,119 @@
+
+$background-color: white;
+
+
 body {
+  background-color: $background-color;
+}
+
+form {
+  padding: 1em 0;
+}
+
+h1 {
+  a:link, a:visited, a:focus, a:hover, a:active {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  margin: 0;
+}
+
+input[type=submit] {
+  margin-right: 1em;
+  padding: 0.5em 0 0.25em 0;
+}
+
+label {
+  display: inline-block;
+  padding: 4px 0 1em 0;
+  text-align: right;
+  vertical-align: top;
+  width: 6em;
+}
+
+table {
+  border-collapse: collapse;
+  padding: 1em 0;
+
+  td {
+    padding: 3px 0.25em;
+  }
+
+  th {
+    background-color: $background-color;
+    padding: 0.5em 1em 0.25em 0.25em;
+    text-align: left;
+  }
+
+  tr:nth-child(even) {
+    background: #DDD
+  }
+
+  tr:nth-child(odd)  {
+    background: #EEE
+  }
+}
+
+textarea {
+  height: 3em;
+  margin-bottom: 1em;
+  width: 20em;
+}
+
+
+// Custom classes
+
+.align-right {
+  text-align: right;
+}
+
+.centered {
+  text-align: center;
+}
+
+.content {
   padding: 1em;
 }
 
-th {
-  text-align: left;
+.header {
+  background-color: lightgrey;
+  padding: 1em;
+}
+
+.flash-error {
+  background-color: #FEE;
+}
+
+.flash-message {
+  padding: 1em;
+}
+
+.flash-success {
+  background-color: #EFE;
+}
+
+.footer {
+  padding: 2em;
+  text-align: center;
+}
+
+.navrow {
+  a {
+    padding-right: 1em;
+  }
+
+  padding-top: 1em;
+}
+
+.object-list {
+  padding: 1em 0;
+}
+
+.rate-plans {
+  padding-left: 1em;
+}
+
+.spacer {
+  padding-top: 1em;
 }

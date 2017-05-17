@@ -1,7 +1,15 @@
 class RatePlanController < ApplicationController
 
+	skip_before_action :verify_authenticity_token, :only => [:index, :show]
+
+
 	def index
-		@rate_plans = RatePlan.order('created_at').all
+		@include_retired = params[:include_retired].nil? || params[:include_retired] != 'false'
+
+		@rate_plans = RatePlan
+										.order('created_at')
+										.all
+		@rate_plans = @rate_plans.reject { |rate_plan| rate_plan.retired? } if !@include_retired
 	end
 
 	def new
@@ -12,7 +20,7 @@ class RatePlanController < ApplicationController
 		@action = 'create'
 		@method = :post
 
-		@products_for_select = Product.order(:title).all.collect{ |p| [ p.title, p.id ] }
+		@products_for_select = products_for_select
 
 		render 'rate_plan/rate_plan_form'
 	end
@@ -37,9 +45,11 @@ class RatePlanController < ApplicationController
 			flash[:error] = [ 'RatePlan not found' ]
 			redirect_to rate_plan_path
 		else
-			@title = "Edit #{@rate_plan.title}"
+			@title = "Edit Rate Plan: #{@rate_plan.title}"
 			@action = 'update'
 			@method = :put
+			@products_for_select = products_for_select
+
 			render 'rate_plan/rate_plan_form'
 		end
 	end
@@ -62,12 +72,14 @@ class RatePlanController < ApplicationController
 		end
 	end
 
-	def show
-		@rate_plan = RatePlan.find( params[:id] )
-
-		if @rate_plan.nil?
+	def retire
+		rate_plan = RatePlan.find_by_id( params[:id] )
+		if rate_plan.nil?
 			flash[:error] = [ 'RatePlan not found' ]
 			redirect_to rate_plan_index_path
+		else
+			rate_plan.update_attribute :end_date, Time.now
+			redirect_to edit_rate_plan_path( rate_plan.id )
 		end
 	end
 
@@ -84,6 +96,10 @@ class RatePlanController < ApplicationController
 				:start_date,
 				:end_date,
 				:product_id)
+	end
+
+	def products_for_select
+		Product.order(:title).all.collect{ |p| [ p.title, p.id ] }
 	end
 	
 end

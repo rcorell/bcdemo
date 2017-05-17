@@ -15,4 +15,8 @@ class RatePlan < ApplicationRecord
 
 	monetize :price_in_cents, as: :price, numericality: { greater_than_or_equal_to: 0 }
 
+	def retired?
+		!end_date.nil? && end_date < Time.now
+	end
+
 end

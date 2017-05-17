@@ -16,11 +16,11 @@
 
   .form-row
     = f.label :billing_frequency
-    = f.select :billing_frequency, RatePlan.billing_frequencies.keys
+    = f.select :billing_frequency, options_for_select( RatePlan.billing_frequencies.keys, @rate_plan.billing_frequency)
 
   .form-row
     = f.label :price
-    = f.text_field :price
+    = f.text_field :price, value: (@rate_plan.price.format if @rate_plan.price)
 
   .form-row
     = f.label :start_date
@@ -30,4 +30,9 @@
     = f.label :end_date
     = f.date_select :end_date, value: @rate_plan.end_date
 
+  .spacer
+
   = f.submit
+  = link_to 'Cancel', rate_plan_index_path
+
+= button_to 'Retire Plan', "/rate_plan/retire/#{@rate_plan.id}"

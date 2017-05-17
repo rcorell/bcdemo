@@ -1,21 +1,33 @@
 %h1 Products
 
-%table
-  %th ID
-  %th Title
-  %th Description
-  %th Start Date
-  %th End Date
-  %th Discontinued
 
-  - @products.each do |p|
-    %tr
-      %td= p.id
-      %td= link_to p.title, edit_product_path( id: p.id )
-      %td= p.description
-      %td= p.start_date.strftime('%m/%d/%Y') if p.start_date
-      %td= p.end_date.strftime('%m/%d/%Y') if p.end_date
-      %td= p.discontinued ? 'X' : ''
+.spacer
 
+%input{type: 'checkbox', checked: @include_discontinued, onclick: "document.location='#{product_index_path}?include_discontinued=#{!@include_discontinued}';"}
+include discontinued
 
-= link_to 'Create new product', new_product_path
+.object-list
+  %table
+    %th ID
+    %th Title
+    %th Description
+    %th Start Date
+    %th End Date
+    %th Discontinued
+    %th Rate Plans
+
+    - @products.each do |p|
+      %tr
+        %td= p.id
+        %td= link_to p.title, edit_product_path( id: p.id )
+        %td= p.description
+        %td= p.start_date.strftime('%m/%d/%Y') if p.start_date
+        %td= p.end_date.strftime('%m/%d/%Y') if p.end_date
+        %td.centered= p.discontinued ? 'X' : ''
+        %td
+          - p.rate_plans.each do |rate_plan|
+            = link_to rate_plan.title, edit_rate_plan_path( rate_plan.id )
+            %br
+
+= button_to 'Create New Product', new_product_path, method: :get
+= button_to 'Create New Rate Plan', new_rate_plan_path, method: :get
