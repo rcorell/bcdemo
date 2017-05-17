@@ -40,5 +40,6 @@ A rate plan belongs only to one product.
 * **Rails**: 5.1.1
 * **Gems**
     * haml
+    * money-rails
     * normalize-rails
 * **MySQL**: 5.6.21
